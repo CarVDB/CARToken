@@ -164,7 +164,7 @@ contract TokenContract is Ownable, StandardToken {
 
 // function to change the ICO contract address, to allow transfers and if you want to change the ICO
 // in case of emergency
-    function setIcoContract(address _icoContract) public {
+    function setIcoContract(address _icoContract) public onlyOwner {
         require(_icoContract != address(0));
         icoContract = _icoContract;
     }
