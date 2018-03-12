@@ -36,7 +36,7 @@ contract Vault is Ownable {
     }
 
     function Vault() public {
-        tkn = TokenContract(0x0); //set the token contract address here
+        tkn = TokenContract(0x0);  //Token address
         beneficiary = msg.sender;
         lockUntil = now + 2 years;
     }
@@ -48,7 +48,7 @@ contract Vault is Ownable {
     function requestTokens() canRequest public {
         uint256 tokenAmount;
         require(now > lockUntil);
-        tokenAmount = tkn.balanceOf(beneficiary);
+        tokenAmount = tkn.balanceOf(this);
         require(tkn.transfer(beneficiary, tokenAmount));
         TokensRequested(beneficiary, tokenAmount);
     }
